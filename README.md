@@ -1,8 +1,8 @@
-# OAuth bridge template
+# OAuth Bridge Template
 
 This service logs in to Spotify and redirects the user to a given frontend application with a valid access_token as a parameter in the url.
 
-## Development mode
+## Development Mode
 
 In development mode, it assumes you are running the frontend on localhost:3000, but the server itself will be running on localhost:8888.
 
@@ -21,7 +21,7 @@ npm start
 
 Then go to http://localhost:8888/login in your browser. This will initiate the login flow and finally redirect to http://localhost:3000?access_token=ZZZZZ where ZZZZZ is a valid access token that you can use to do operations in the Spotify API.
 
-## Deploying to production
+## Deploying to Production
 
 This template is indended to be deployed on Heroku. After installing the heroku CLI tools you can run the below commands in the same directory as server.js(replacing abc123, cba456, mybackend and myfrontend with your actual stuff - the below example assume that you already have your frontend running on http://myfrontend.herokuapp.com.
 
