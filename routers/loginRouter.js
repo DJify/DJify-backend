@@ -51,7 +51,7 @@ loginRouter.get('/callback', function(req, res) {
       } else {
         uri += '/dashboard'
       }
-      res.redirect(uri + '?access_token=' + access_token + '?spotify_user_id=' + spotifyUserId)
+      res.redirect(uri + '&access_token=' + access_token + '&spotify_user_id=' + spotifyUserId)
     })
   })
 })
