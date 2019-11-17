@@ -49,23 +49,11 @@ concertRouter.route('/')
         })
     })
 
-concertRouter.route('/vote')
-    .post((req, res) => {
-        const { userId, concertId, vote } = req.body
-        
-    })
 
-concertRouter.route('/downvote')
-    .post((req, res) => {
-        const { userId, concertId } = req.body
-    })
-
-concertRouter.route('/save-song')
-    .post((req, res) => {
-        
-    })
 
 concertRouter.route('/category/:categoryId')
     .get((req, res) => {
 
     })
+
+module.exports = concertRouter
