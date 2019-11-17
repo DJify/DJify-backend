@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
-const User = require('./user')
+const User = require('./user').schema
 
-const Track = mongoose.Schema({
+const trackSchema = mongoose.Schema({
     startTime: {
         type: Date,
         default: Date.now,
@@ -28,4 +28,4 @@ const Track = mongoose.Schema({
     },
 })
 
-module.exports = Track
+module.exports = mongoose.model('Track', trackSchema)

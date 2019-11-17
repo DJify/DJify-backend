@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-const Track = require('./track')
-const User = require('./user')
+const Track = require('./track').schema
+const User = require('./user').schema
 
-const Concert = new mongoose.Schema({
+const concertSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -38,4 +38,4 @@ const Concert = new mongoose.Schema({
     }
 })
 
-module.exports = Concert
+module.exports = mongoose.model('Concert', concertSchema)
