@@ -35,6 +35,11 @@ const concertSchema = new mongoose.Schema({
     currentTrack: {
         type: Track,
     },
+    startTime: {
+        type: Date,
+        required: true,
+        default: Date.now
+    }
 })
 
 module.exports = mongoose.model('Concert', concertSchema)
