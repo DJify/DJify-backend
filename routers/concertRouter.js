@@ -3,6 +3,7 @@ const request = require('request')
 const querystring = require('querystring')
 
 const Concert = require('../schemas/concert')
+const User = require(['../schemas/user')
 const utils = require('./utils')
 
 let concertRouter = express()
@@ -49,7 +50,47 @@ concertRouter.route('/')
         })
     })
 
+concertRouter.route('/join')
+    .post((req, res) => {
+        const { userId, concertId } = req.body
+        const curUser = User.findById(userId)
+        const curConcert = Concert.findById(concertId)
 
+        curConcert.users.push(curUser);
+        curConcert.save(() => {
+            let redirectUrl = process.env.FRONTEND_URI || 'localhost:3000'
+            redirectUrl += '/room'
+            res.redirect(redirectUrl)
+        })
+    })
+
+concertRouter.route('/leave')
+    .post((req, res) => {
+        const { userId, concertId } = req.body
+        const curUser = User.findById(userId)
+        const curConcert = Concert.findById(concertId)
+
+        curConcert.users.remove(curUser);
+        curConcert.save(() => {
+            let redirectUrl = process.env.FRONTEND_URI || 'localhost:3000'
+            redirectUrl += '/dashboard'
+            res.redirect(redirectUrl)
+        })
+    })
+
+concertRouter.route('/vote')
+    .post((req, res) => {
+        const { userId, concertId, vote } = req.body
+    })
+
+concertRouter.route('/downvote')
+    .post((req, res) => {
+        const { userId, concertId } = req.body
+    })
+
+concertRouter.route('/save-song')
+    .post((req, res) => {
+    })
 
 concertRouter.route('/category/:categoryId')
     .get((req, res) => {

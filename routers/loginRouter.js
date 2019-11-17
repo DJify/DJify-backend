@@ -38,9 +38,6 @@ loginRouter.get('/callback', function(req, res) {
     json: true
   }
 
-  const getTokenRequest = utils.buildSpotifyRequest('https://accounts.spotify.com/api/token', requestExtras)
-  console.log("Token Request: " + getTokenRequest);
-
   request.post(getTokenRequest, function(error, response, body) {
     var access_token = body.access_token
 
