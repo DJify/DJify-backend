@@ -26,7 +26,7 @@ loginRouter.get('/callback', function(req, res) {
   const getTokenRequest = {
     url: 'https://accounts.spotify.com/api/token',
     form: {
-      code: req.query.code || null,
+      code,
       redirect_uri,
       grant_type: 'authorization_code'
     },
@@ -37,9 +37,6 @@ loginRouter.get('/callback', function(req, res) {
     },
     json: true
   }
-
-  const getTokenRequest = utils.buildSpotifyRequest('https://accounts.spotify.com/api/token', requestExtras)
-  console.log("Token Request: " + getTokenRequest);
 
   request.post(getTokenRequest, function(error, response, body) {
     var access_token = body.access_token
