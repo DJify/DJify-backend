@@ -3,7 +3,7 @@ const request = require('request')
 const querystring = require('querystring')
 
 const Concert = require('../schemas/concert')
-const User = require(['../schemas/user')
+const User = require('../schemas/user')
 const utils = require('./utils')
 
 let concertRouter = express()
@@ -52,9 +52,22 @@ concertRouter.route('/')
 
 concertRouter.route('/join')
     .post((req, res) => {
-        const { userId, concertId } = req.body
+        const { userId, concertId, songId } = req.body
         const curUser = User.findById(userId)
         const curConcert = Concert.findById(concertId)
+        const curTime = Date.now - curConcert.startTime
+
+        const createMediaRequest = {
+            url: `https://api.spotify.com/v1/me/player/play`,
+            headers: {
+                'Authorization': 'Bearer ' + access_token,
+            },
+            body: {
+                context_uri: curConcert.playlistId,
+                position_ms: curTime,
+            },
+            json: true,
+        }
 
         curConcert.users.push(curUser);
         curConcert.save(() => {
