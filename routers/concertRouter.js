@@ -96,3 +96,5 @@ concertRouter.route('/category/:categoryId')
     .get((req, res) => {
 
     })
+
+module.exports = concertRouter
