@@ -10,8 +10,8 @@ const concertSchema = new mongoose.Schema({
     playlistId: {
         type: String,
     },
-    categoryIds: {
-        type: [Number],
+    categoryId: {
+        type: String,
         required: true,
     },
     users: {
@@ -26,7 +26,6 @@ const concertSchema = new mongoose.Schema({
     },
     currentDj: {
         type: User,
-        required: true,
     },
     currentTrackIndex: {
         type: Number,
@@ -35,7 +34,7 @@ const concertSchema = new mongoose.Schema({
     },
     currentTrack: {
         type: Track,
-    }
+    },
 })
 
 module.exports = mongoose.model('Concert', concertSchema)

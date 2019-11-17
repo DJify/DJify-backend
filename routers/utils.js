@@ -1,14 +1,10 @@
-const buildSpotifyRequest = (url, extras) => ({
-    ...extras,
+const buildSpotifyApiRequest = (url, access_token, extras) => ({
     url,
-    headers: {
-        'Authorization': 'Basic ' + (new Buffer(
-        process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET
-        ).toString('base64'))
-    },
-    json: true
+    headers: { 'Authorization': 'Bearer ' + access_token },
+    json: true,
+    ...extras,
 })
 
 module.exports = {
-    buildSpotifyRequest
+    buildSpotifyApiRequest
 }
