@@ -1,9 +1,8 @@
 const mongoose = require('mongoose')
 
-const User = mongoose.Schema({
+const userSchema = mongoose.Schema({
     username: {
         type: String,
-        required: false,
     },
     queuedSongIds: {
         type: [String],
@@ -33,8 +32,7 @@ const User = mongoose.Schema({
         type: Boolean,
         required: true,
         default: true,
-    }
-
+    },
 })
 
-module.exports = User
+module.exports = mongoose.model('User', userSchema)
