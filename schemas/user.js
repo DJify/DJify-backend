@@ -33,6 +33,11 @@ const userSchema = mongoose.Schema({
         required: true,
         default: true,
     },
+    avatar: {
+        type: Number,
+        required: true,
+        default: 0,
+    }
 })
 
 module.exports = mongoose.model('User', userSchema)
