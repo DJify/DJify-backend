@@ -15,7 +15,6 @@ userRouter.route('/')
             wantsToDj,
             username,
         })
-        
     })
 
 userRouter.route('/:userId')
