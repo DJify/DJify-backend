@@ -52,7 +52,7 @@ concertRouter.route('/')
 
 concertRouter.route('/join')
     .post((req, res) => {
-        const { userId, concertId, songId } = req.body
+        const { userId, concertId } = req.body
         const curUser = User.findById(userId)
         const curConcert = Concert.findById(concertId)
         const curTime = Date.now - curConcert.startTime
