@@ -14,7 +14,7 @@ On that page, add http://localhost:8888 as a callback url (don't forget to hit s
 Write the below commands in your terminal (replacing XXXX AND YYYY with your acutal client id and secret from the page where you registered your application)
 
 ```
-export SPOTIFY_CLIENT_ID=XXXX
+export SPOTIFY_CLIENT_ID=XXXX (use 'set' if using powershell)
 export SPOTIFY_CLIENT_SECRET=YYYY
 yarn start
 ```
