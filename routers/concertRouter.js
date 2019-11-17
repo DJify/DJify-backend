@@ -3,7 +3,7 @@ const request = require('request')
 const querystring = require('querystring')
 
 const Concert = require('../schemas/concert')
-const User = require(['../schemas/user')
+const User = require('../schemas/user')
 const utils = require('./utils')
 
 let concertRouter = express()
