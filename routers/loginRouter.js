@@ -37,24 +37,23 @@ loginRouter.get('/callback', function(req, res) {
     },
     json: true
   }
-  console.log("Token Request: " + getTokenRequest);
 
   request.post(getTokenRequest, function(error, response, body) {
     var access_token = body.access_token
 
     let uri = process.env.FRONTEND_URI || 'http://localhost:3000'
 
-    // const getUserRequest = utils.buildSpotifyApiRequest('https://api.spotify.com/v1/me', code, redirect_uri)
-    // request.post(getUserRequest, (error, response, body) => {
-    //   const spotifyUserId = body.id
-    //   if (User.exists({ spotifyUserId })) {
-    //     uri += '/account'
-    //   } else {
-    //     uri += '/home'
-    //   }
-      // res.redirect(uri + '?access_token=' + access_token)
-    // })
-    res.redirect(uri + '?access_token=' + access_token)
+    const getUserRequest = utils.buildSpotifyApiRequest('https://api.spotify.com/v1/me', code, redirect_uri)
+    request.post(getUserRequest, (error, response, body) => {
+      const spotifyUserId = body.id
+      if (User.exists({ spotifyUserId })) {
+        uri += '/account'
+      } else {
+        uri += '/dashboard'
+      }
+      res.redirect(uri + '?access_token=' + access_token)
+    })
+    // res.redirect(uri + '?access_token=' + access_token)
   })
 })
 
