@@ -7,14 +7,11 @@ const utils = require('./utils')
 
 let loginRouter = express()
 
-const redirect_uri = 
-  process.env.REDIRECT_URI || 
+const redirect_uri =
+  process.env.REDIRECT_URI ||
   'http://localhost:8888/login/callback'
 
-console.log('redirect' + redirect_uri)
-
 loginRouter.get('/', function(req, res) {
-  console.log('here' + process.env.SPOTIFY_CLIENT_ID)
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
@@ -27,18 +24,18 @@ loginRouter.get('/', function(req, res) {
 loginRouter.get('/callback', function(req, res) {
   const requestExtras = {
     form: {
-      code: req.code || null,
+      code: req.query.code || null,
       redirect_uri,
       grant_type: 'authorization_code'
     }
   }
+
   const getTokenRequest = utils.buildSpotifyRequest('https://accounts.spotify.com/api/token', requestExtras)
-  console.log(getTokenRequest)
+  console.log("Token Request: " + getTokenRequest);
 
   request.post(getTokenRequest, function(error, response, body) {
     var access_token = body.access_token
 
-    
     let uri = process.env.FRONTEND_URI || 'http://localhost:3000'
 
     // const getUserRequest = utils.buildSpotifyRequest('https://api.spotify.com/v1/me', code, redirect_uri)
@@ -50,7 +47,6 @@ loginRouter.get('/callback', function(req, res) {
     //     uri += '/home'
     //   }
     // })
-
 
     res.redirect(uri + '?access_token=' + access_token)
   })
